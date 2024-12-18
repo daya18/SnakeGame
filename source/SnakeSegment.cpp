@@ -50,7 +50,7 @@ namespace sg
 
 	void SnakeSegment::SetSize ( sf::Vector2f const & size )
 	{
-		segment.setSize ( size );
+		segment.setRadius ( size.x * 0.5 );
 	}
 
 	void SnakeSegment::UpdateMoveDirection ()

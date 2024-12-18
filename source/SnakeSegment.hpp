@@ -24,6 +24,6 @@ namespace sg
 		Snake * snake;
 		Types type;
 		sf::Vector2f moveDirection;
-		sf::RectangleShape segment;
+		sf::CircleShape segment;
 	};
 }
