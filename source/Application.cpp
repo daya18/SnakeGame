@@ -1,10 +1,13 @@
 #include "Application.hpp"
 
+#include "GameLayer.hpp"
+
 namespace sg
 {
 	Application::Application ()
 		: renderWindow { { 1280, 720 }, "SnakeGame" }
 	{
+		layers.push_back ( std::make_unique <GameLayer> () );
 	}
 
 	void Application::Run ()
