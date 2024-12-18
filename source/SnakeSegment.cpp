@@ -13,18 +13,18 @@ namespace sg
 	{
 		segment.setFillColor ( sf::Color::Blue );
 
-		segment.setOutlineColor ( sf::Color::Yellow );
-		segment.setOutlineThickness ( 5.0f );
+		//segment.setOutlineColor ( sf::Color::Yellow );
+		//segment.setOutlineThickness ( 5.0f );
 
 		SetPosition ( position );
 		SetSize ( { snake.segmentSize, snake.segmentSize } );
 	}
 
-	void SnakeSegment::Update ( sf::Time const & delta )
+	void SnakeSegment::Update ( sf::Time const & deltaTime )
 	{
 		UpdateMoveDirection ();
-
-		segment.move ( moveDirection * snake->moveSpeed );
+		auto delta { static_cast < float > (deltaTime.asSeconds ()) };
+		segment.move ( moveDirection * snake->moveSpeed * delta );
 	}
 
 	void SnakeSegment::Render ( sf::RenderTarget & target ) const
@@ -64,7 +64,7 @@ namespace sg
 				auto positionF { Project ( position, moveDirection ) };
 				auto turnPointPositionF { Project ( turnPointIt->position, moveDirection ) };
 
-				if ( positionF >= turnPointPositionF && positionF <= turnPointPositionF + snake->moveSpeed )
+				if ( positionF >= turnPointPositionF && positionF <= turnPointPositionF + snake->segmentSize * 0.5f )
 				{
 					moveDirection = turnPointIt->turnDirection;
 

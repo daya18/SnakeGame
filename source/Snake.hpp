@@ -24,7 +24,7 @@ namespace sg
 		void Turn ( sf::Vector2f direction );
 
 		float segmentSize { 25.0f };
-		float moveSpeed { 0.05f };
+		float moveSpeed { 100.0f };
 
 		sf::Vector2f position { 0.0f, 0.0f };
 		sf::Vector2f moveDirection { 1.0f, 0.0f };
