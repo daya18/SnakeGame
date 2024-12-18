@@ -18,11 +18,11 @@ target_sources ( SnakeGame PRIVATE
 	"source/Main.cpp"  
 	"source/Application.cpp" 
 	"source/game/GameLayer.cpp" 
-	"source/game/Snake.cpp" 
-	"source/game/SnakeSegment.cpp" 
+	"source/game/snake/Snake.cpp" 
+	 
 	"source/Math.cpp" 
 	"source/gui/HUDLayer.cpp"
- "source/game/Food.cpp")
+ "source/game/Food.cpp" "source/game/snake/SnakeSegment.cpp")
 
 find_package ( SFML COMPONENTS system graphics window REQUIRED )
 

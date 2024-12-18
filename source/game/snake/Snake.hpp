@@ -7,7 +7,7 @@ namespace sg
 	class Snake
 	{
 	public:
-		Snake ();
+		Snake ( sf::Vector2f const & position );
 
 		void ProcessEvent ( sf::Event );
 		void Update ( sf::Time );
@@ -21,8 +21,7 @@ namespace sg
 			sf::Vector2f turnDirection;
 		};
 
-		void PositionSegments ();
-		void Turn ( sf::Vector2f direction );
+		void Turn ( sf::Vector2f const & );
 
 		float segmentSize { 30.0f };
 		float moveSpeed { 100.0f };
@@ -30,9 +29,7 @@ namespace sg
 		sf::Vector2f position { 0.0f, 0.0f };
 		sf::Vector2f moveDirection { 1.0f, 0.0f };
 
-		std::vector <SnakeSegment> segments;
+		std::unique_ptr <SnakeSegment> headSegment;
 		std::vector <TurnPoint> turnPoints;
-
-		friend SnakeSegment;
 	};
 }

@@ -8,6 +8,7 @@ namespace sg
 	GameLayer::GameLayer ( Application & application )
 	: 
 		application ( & application ),
+		snake ( sf::Vector2f { application.GetWindow ().getSize () } * 0.5f ),
 		food { { Random () * application.GetWindow ().getSize ().x, Random () * application.GetWindow ().getSize ().y } }
 	{
 	}

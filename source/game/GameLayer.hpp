@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Snake.hpp"
+#include "snake/Snake.hpp"
 #include "Food.hpp"
 
 namespace sg
