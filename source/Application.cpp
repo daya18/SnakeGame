@@ -9,7 +9,7 @@ namespace sg
 		: renderWindow { { 1280, 720 }, "SnakeGame" }
 	{
 		layers.push_back ( std::make_unique <GameLayer> () );
-		layers.push_back ( std::make_unique <HUDLayer> () );
+		layers.push_back ( std::make_unique <HUDLayer> ( *this ) );
 	}
 
 	void Application::Run ()

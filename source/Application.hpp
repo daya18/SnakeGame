@@ -11,6 +11,7 @@ namespace sg
 
 		void Run ();
 
+		
 	private:
 		void ProcessEvents ();
 		void Update ();
