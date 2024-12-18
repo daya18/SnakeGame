@@ -12,7 +12,17 @@ endif()
 project ("SnakeGame")
 
 # Add source to this project's executable.
-add_executable (SnakeGame "source/Main.cpp"  "source/Application.cpp" "source/Layer.cpp" "source/game/GameLayer.cpp" "source/game/Snake.cpp" "source/game/SnakeSegment.cpp" "source/Math.cpp" "source/gui/HUDLayer.cpp")
+add_executable (SnakeGame )
+
+target_sources ( SnakeGame PRIVATE 
+	"source/Main.cpp"  
+	"source/Application.cpp" 
+	"source/game/GameLayer.cpp" 
+	"source/game/Snake.cpp" 
+	"source/game/SnakeSegment.cpp" 
+	"source/Math.cpp" 
+	"source/gui/HUDLayer.cpp"
+ "source/game/Food.cpp")
 
 find_package ( SFML COMPONENTS system graphics window REQUIRED )
 

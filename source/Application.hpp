@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Layer.hpp"
+#include "game/GameLayer.hpp"
+#include "gui/HUDLayer.hpp"
 
 namespace sg
 {
@@ -11,7 +12,8 @@ namespace sg
 
 		void Run ();
 
-		
+		sf::Window const & GetWindow () const;
+
 	private:
 		void ProcessEvents ();
 		void Update ();
@@ -20,6 +22,12 @@ namespace sg
 		sf::RenderWindow renderWindow;
 		bool quit { false };
 		sf::Clock updateClock;
-		std::vector <std::unique_ptr <Layer>> layers;
+		GameLayer gameLayer;
+		HUDLayer hudLayer;
 	};
+
+
+
+	// Implementation
+	inline sf::Window const & Application::GetWindow () const { return renderWindow; }
 }

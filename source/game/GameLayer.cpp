@@ -1,8 +1,14 @@
 #include "GameLayer.hpp"
 
+#include "../Math.hpp"
+#include "../Application.hpp"
+
 namespace sg
 {
-	GameLayer::GameLayer ()
+	GameLayer::GameLayer ( Application & application )
+	: 
+		application ( & application ),
+		food { { Random () * application.GetWindow ().getSize ().x, Random () * application.GetWindow ().getSize ().y } }
 	{
 	}
 
@@ -19,5 +25,6 @@ namespace sg
 	void GameLayer::Render ( sf::RenderTarget & target ) const
 	{
 		snake.Render ( target );
+		food.Render ( target );
 	}
 }

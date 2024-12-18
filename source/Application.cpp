@@ -1,15 +1,14 @@
 #include "Application.hpp"
 
-#include "game/GameLayer.hpp"
-#include "gui/HUDLayer.hpp"
-
 namespace sg
 {
 	Application::Application ()
-		: renderWindow { { 1280, 720 }, "SnakeGame" }
+	:
+		renderWindow { { 1280, 720 }, "SnakeGame" },
+		gameLayer { *this },
+		hudLayer { *this }
 	{
-		layers.push_back ( std::make_unique <GameLayer> () );
-		layers.push_back ( std::make_unique <HUDLayer> ( *this ) );
+		hudLayer.SetGameLayer ( gameLayer );
 	}
 
 	void Application::Run ()
@@ -33,16 +32,18 @@ namespace sg
 			if ( event.type == sf::Event::Closed )
 				quit = true;
 
-			for ( auto & layer : layers )
-				layer->ProcessEvent ( event );
+			gameLayer.ProcessEvent ( event );
+			hudLayer.ProcessEvent ( event );
 		}
 	}
 
 	void Application::Update ()
 	{
-		for ( auto & layer : layers )
-			layer->Update ( updateClock.getElapsedTime () );
-		
+		sf::Time elapsedTime { updateClock.getElapsedTime () };
+
+		gameLayer.Update ( elapsedTime );
+		hudLayer.Update ( elapsedTime );
+
 		updateClock.restart ();
 	}
 
@@ -50,8 +51,8 @@ namespace sg
 	{
 		renderWindow.clear ();
 
-		for ( auto const & layer : layers )
-			layer->Render ( renderWindow );
+		gameLayer.Render ( renderWindow );
+		hudLayer.Render ( renderWindow );
 
 		renderWindow.display ();
 	}

@@ -1,22 +1,25 @@
 #pragma once
 
-#include "../Layer.hpp"
-
 namespace sg
 {
 	class Application;
+	class GameLayer;
 
-	class HUDLayer : public Layer
+	class HUDLayer
 	{
 	public:
 		HUDLayer ( Application & );
 
-		void ProcessEvent ( sf::Event ) override;
-		void Update ( sf::Time ) override;
-		void Render ( sf::RenderTarget & ) const override;
+		void ProcessEvent ( sf::Event );
+		void Update ( sf::Time );
+		void Render ( sf::RenderTarget & ) const;
+		
+		void SetGameLayer ( GameLayer const & );
 
 	private:
 		Application * application;
+		GameLayer const * gameLayer;
+
 		sf::Font font;
 		sf::Text scoreText;
 	};
