@@ -1,6 +1,7 @@
 #include "Application.hpp"
 
-#include "GameLayer.hpp"
+#include "game/GameLayer.hpp"
+#include "gui/HUDLayer.hpp"
 
 namespace sg
 {
@@ -8,6 +9,7 @@ namespace sg
 		: renderWindow { { 1280, 720 }, "SnakeGame" }
 	{
 		layers.push_back ( std::make_unique <GameLayer> () );
+		layers.push_back ( std::make_unique <HUDLayer> () );
 	}
 
 	void Application::Run ()

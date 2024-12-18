@@ -1,20 +1,19 @@
 #pragma once
 
-#include "Layer.hpp"
-#include "Snake.hpp"
+#include "../Layer.hpp"
 
 namespace sg
 {
-	class GameLayer : public Layer
+	class HUDLayer : public Layer
 	{
 	public:
-		GameLayer ();
+		HUDLayer ();
 
 		void ProcessEvent ( sf::Event ) override;
 		void Update ( sf::Time ) override;
 		void Render ( sf::RenderTarget & ) const override;
 
 	private:
-		Snake snake;
+		sf::Text scoreText;
 	};
 }

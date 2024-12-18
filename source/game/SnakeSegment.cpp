@@ -1,7 +1,7 @@
 #include "SnakeSegment.hpp"
 
 #include "Snake.hpp"
-#include "Math.hpp"
+#include "../Math.hpp"
 
 namespace sg
 {
