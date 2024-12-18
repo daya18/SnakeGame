@@ -1,24 +1,15 @@
 #include "Snake.hpp"
 
+#include "../Math.hpp"
+
 namespace sg
 {
 	Snake::Snake ()
 	{	
-		int segmentCount { 4 };
-
-		// Create body segments 
-		for ( int segmentIndex { 0 }; segmentIndex < segmentCount; ++segmentIndex )
-		{
-			sf::Vector2f segmentPosition { segmentIndex * segmentSize, 0.0f };
-
-			auto segmentType {
-				  segmentIndex == 0 ? SnakeSegment::Types::tail
-				: segmentIndex == segmentCount - 1 ? SnakeSegment::Types::head
-				: SnakeSegment::Types::body
-			};
-
-			segments.emplace_back ( SnakeSegment { *this, segmentType, segmentPosition, { 1.0f, 0.0f } } );
-		}
+		segments.emplace_back ( *this, sf::Vector2f { segmentSize, segmentSize } );
+		segments.emplace_back ( *this, sf::Vector2f { segmentSize, segmentSize } );
+		segments.emplace_back ( *this, sf::Vector2f { segmentSize, segmentSize } );
+		segments.emplace_back ( *this, sf::Vector2f { segmentSize, segmentSize } );
 	}
 
 	void Snake::ProcessEvent ( sf::Event event )
@@ -46,14 +37,26 @@ namespace sg
 		for ( auto const & segment : segments )
 			segment.Render ( target );
 	}
+	
+	void Snake::PositionSegments ()
+	{
+		sf::Vector2f position { this->position };
+
+		for ( auto & segment : segments )
+		{
+			position += Multiply ( -segment.GetForward (), segment.GetSize () * 0.5f );
+			segment.SetPosition ( position );
+			position += Multiply ( -segment.GetForward (), segment.GetSize () * 0.5f );
+		}
+	}
 
 	void Snake::Turn ( sf::Vector2f direction )
 	{
-		if ( direction == moveDirection || direction == -moveDirection )
-			return;
+		//if ( direction == moveDirection || direction == -moveDirection )
+		//	return;
 
-		moveDirection = direction;
+		//moveDirection = direction;
 
-		segments.back ().Turn ( moveDirection );
+		//segments.back ().Turn ( moveDirection );
 	}
 }

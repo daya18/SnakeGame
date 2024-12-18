@@ -21,6 +21,7 @@ namespace sg
 			sf::Vector2f turnDirection;
 		};
 
+		void PositionSegments ();
 		void Turn ( sf::Vector2f direction );
 
 		float segmentSize { 30.0f };
