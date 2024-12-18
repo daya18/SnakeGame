@@ -61,13 +61,11 @@ namespace sg
 		{
 			if ( moveDirection == turnPointIt->forwardDirection )
 			{
-				auto positionF { Project ( position, moveDirection ) };
-				auto turnPointPositionF { Project ( turnPointIt->position, moveDirection ) };
-
-				if ( positionF >= turnPointPositionF && positionF <= turnPointPositionF + snake->segmentSize * 0.5f )
+				if ( ApproximatelyEqual ( position, turnPointIt->position, snake->moveSpeed * 0.005 ) )
 				{
+					SetPosition ( turnPointIt->position );
 					moveDirection = turnPointIt->turnDirection;
-
+					
 					if ( type == Types::tail )
 					{
 						snake->turnPoints.erase ( turnPointIt );

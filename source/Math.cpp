@@ -27,4 +27,15 @@ namespace sg
 		auto axisAlignedVector { Multiply ( vector, axis ) };
 		return axisAlignedVector.x == 0.0f ? axisAlignedVector.y : axisAlignedVector.x;
 	}
+
+	float & Project ( sf::Vector2f & vector, sf::Vector2f const & axis )
+	{
+		auto axisAlignedVector { Multiply ( vector, axis ) };
+		return axisAlignedVector.x == 0.0f ? axisAlignedVector.y : axisAlignedVector.x;
+	}
+
+	bool ApproximatelyEqual ( sf::Vector2f const & l, sf::Vector2f const & r, float tolerance )
+	{
+		return abs ( l.x - r.x ) <= tolerance && abs ( l.y - r.y ) <= tolerance;
+	}
 }
