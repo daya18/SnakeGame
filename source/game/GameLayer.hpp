@@ -17,8 +17,11 @@ namespace sg
 		void Render ( sf::RenderTarget & ) const;
 
 		int GetScore () const;
+		Food & GetFood ();
 
 	private:
+		void GenerateFood ();
+
 		Application * application;
 
 		int score { 0 };

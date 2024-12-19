@@ -2,15 +2,25 @@
 
 namespace sg
 {
-	Food::Food ( sf::Vector2f const & position )
+	Food::Food ()
 	{
-		food.setSize ( { 50.0f, 50.0f } );
-		food.setPosition ( position );
-		food.setFillColor ( sf::Color::Magenta );
+		texture.loadFromFile ( "assets/images/apple.png" );
+		food.setTexture ( texture, true );
+		food.setScale ( 2.0f, 2.0f );
 	}
 
 	void Food::Render ( sf::RenderTarget & target ) const
 	{
 		target.draw ( food );
+	}
+
+	sf::FloatRect Food::GetGlobalBounds () const
+	{
+		return food.getGlobalBounds ();
+	}
+
+	void Food::SetPosition ( sf::Vector2f const & position )
+	{
+		food.setPosition ( position );
 	}
 }

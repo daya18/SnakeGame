@@ -22,7 +22,7 @@ target_sources ( SnakeGame PRIVATE
 	 
 	"source/Math.cpp" 
 	"source/gui/HUDLayer.cpp"
- "source/game/Food.cpp" "source/game/snake/SnakeSegment.cpp")
+ "source/game/Food.cpp" "source/game/snake/SnakeSegment.cpp" "source/game/snake/SnakeTurnPoint.cpp")
 
 find_package ( SFML COMPONENTS system graphics window REQUIRED )
 

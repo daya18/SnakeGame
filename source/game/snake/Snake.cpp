@@ -4,13 +4,18 @@
 
 namespace sg
 {
-	Snake::Snake ( sf::Vector2f const & position )
+	Snake::Snake ( GameLayer & gameLayer, sf::Vector2f const & position )
 	:
+		gameLayer ( &gameLayer ),
 		position ( position ),
 		headSegment ( std::make_unique <SnakeSegment> ( *this ) )
 	{
 		headSegment->SetPosition ( position );
-		headSegment->Grow ( sf::Vector2f { -1.0f, 0.0f } );
+		headSegment->SetFillColor ( { 67, 53, 167 } );
+
+		headSegment -> 
+			 Grow ( sf::Vector2f { -1.0f, 0.0f } )
+			.Grow ( sf::Vector2f { 0.0f, 1.0f } );
 	}
 
 	void Snake::ProcessEvent ( sf::Event event )
@@ -37,8 +42,11 @@ namespace sg
 		headSegment->Render ( target );
 	}
 
-	void Snake::Turn ( sf::Vector2f const & )
+	void Snake::Turn ( sf::Vector2f const & direction )
 	{
+		if ( direction == headSegment->GetForward () || direction == -headSegment->GetForward () )
+			return;
 
+		headSegment->AddTurnPoint ( { headSegment->GetPosition (), headSegment->GetForward (), direction } );
 	}
 }

@@ -5,11 +5,14 @@ namespace sg
 	class Food
 	{
 	public:
-		Food ( sf::Vector2f const & position );
+		Food ();
 
+		void SetPosition ( sf::Vector2f const & position );
 		void Render ( sf::RenderTarget & ) const;
+		sf::FloatRect GetGlobalBounds () const;
 
 	private:
-		sf::RectangleShape food;
+		sf::Texture texture;
+		sf::Sprite food;
 	};
 }
